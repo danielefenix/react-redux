@@ -1,12 +1,13 @@
-import {v4} from 'node-uuid';
 import {getIsFetching} from '../reducers/index.jsx'
 import * as api from '../api/index.jsx';
 
-export const addTodo = (text) => ({
-    type: 'ADD_TODO',
-    id: v4(),
-    text
-});
+export const addTodo = (text) => (dispatch) =>
+    api.addTodo(text).then(response => {
+        dispatch({
+            type : 'ADD_TODO_SUCCESS',
+            response
+        });
+    });
 
 //thunk middleware
 export const fetchTodos = (filter) => (dispatch, getState) => {
@@ -35,6 +36,7 @@ export const fetchTodos = (filter) => (dispatch, getState) => {
             })
         });
 };
+
 export const toggleTodo = (id) => ({
     type: 'TOGGLE_TODO',
     id
