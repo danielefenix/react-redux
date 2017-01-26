@@ -1,11 +1,11 @@
 import {createStore, applyMiddleware} from 'redux'
+import thunk from 'redux-thunk'
 import todoApp from './reducers/index.jsx'
-import promise from 'redux-promise';
 import createLogger  from 'redux-logger';
 
 const configureStore = () => {
 
-    const middlewares = [promise];
+    const middlewares = [thunk];
     if (process.env.NODE_ENV !== 'production') {
         middlewares.push(createLogger());
     }
