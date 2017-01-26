@@ -1,11 +1,13 @@
-import {getIsFetching} from '../reducers/index.jsx'
+import {normalize} from 'normalizr';
+import * as schema from './schema.jsx';
 import * as api from '../api/index.jsx';
+import {getIsFetching} from '../reducers/index.jsx'
 
 export const addTodo = (text) => (dispatch) =>
     api.addTodo(text).then(response => {
         dispatch({
-            type : 'ADD_TODO_SUCCESS',
-            response
+            type: 'ADD_TODO_SUCCESS',
+            response: normalize(response, schema.todo)
         });
     });
 
@@ -24,7 +26,7 @@ export const fetchTodos = (filter) => (dispatch, getState) => {
         response => {
             dispatch({
                 type: 'FETCH_TODOS_SUCCESS',
-                response,
+                response: normalize(response, schema.arrayOfTodos),
                 filter
             });
         },
@@ -37,7 +39,10 @@ export const fetchTodos = (filter) => (dispatch, getState) => {
         });
 };
 
-export const toggleTodo = (id) => ({
-    type: 'TOGGLE_TODO',
-    id
-});
+export const toggleTodo = (id) => (dispatch) =>
+    api.toggleTodo(id).then(response => {
+        dispatch({
+            type: 'TOGGLE_TODO_SUCCESS',
+            response: normalize(response, schema.todo)
+        })
+    });
