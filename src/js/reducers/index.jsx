@@ -1,3 +1,11 @@
+/*
+ *  In Redux, all reducers get called regardless of the action, so inside each one
+ *  return the original state if the action is not applicable.
+ *
+ *  Actions describe the fact that something happened, but don't specify how the application's state changes in response.
+ *  This is the job of reducers.
+ * */
+
 import {combineReducers} from 'redux';
 import byId, * as fromById from './byId.jsx';
 import createList, * as fromList from './createList.jsx'

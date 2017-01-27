@@ -7,17 +7,10 @@ const todo = (state = {}, action) => {
                 completed: false
             };
         case 'TOGGLE_TODO':
-            console.log(state.id, action.id);
-
             if (state.id !== action.id) {
                 return state
             }
-
-
-            return Object.assign({}, state, {
-                completed: !state.completed
-            });
-
+            return {...state, completed: !state.completed};
         default:
             return state
     }

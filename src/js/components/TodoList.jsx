@@ -11,7 +11,7 @@ const TodoList = ({ todos, onTodoClick }) => (
             />
         )}
     </ul>
-)
+);
 
 TodoList.propTypes = {
     todos: PropTypes.arrayOf(PropTypes.shape({

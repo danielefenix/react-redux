@@ -6,7 +6,6 @@ import TodoList from '../components/TodoList.jsx'
 import {getVisibleTodos, getErrorMessage, getIsFetching} from '../reducers/index.jsx';
 import FetchError from '../components/FetchError.jsx'
 
-
 class VisibleTodoList extends Component {
 
     fetchData() {
@@ -60,7 +59,7 @@ const mapStateToProps = (state, {params}) => {
  }
  });*/
 
-VisibleTodoList = withRouter(connect(
+VisibleTodoList = withRouter(connect( //what allows us to connect a component to Redux's store, and action creators
     mapStateToProps,
     /* mapDispatchToProps */ /*{onTodoClick: toggleTodo, receiveTodos}*/
     actions

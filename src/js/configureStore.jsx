@@ -1,11 +1,12 @@
 import {createStore, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
-import todoApp from './reducers/index.jsx'
+import rootReducer from './reducers/index.jsx'
 import createLogger  from 'redux-logger';
 
-const configureStore = () => {
+const configureStore = (initialState) => {
 
     const middlewares = [thunk];
+
     if (process.env.NODE_ENV !== 'production') {
         middlewares.push(createLogger());
     }
@@ -13,8 +14,8 @@ const configureStore = () => {
     //wrapDispatchWithMiddlewares(store, middlewares);
 
     return  createStore(
-        todoApp,
-        /*persistent state*/
+        rootReducer,
+        initialState, /*persistent state*/
         applyMiddleware(...middlewares)); //enhancers
 
 };

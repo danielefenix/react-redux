@@ -1,3 +1,5 @@
+//action creators are functions that return an action
+
 import {normalize} from 'normalizr';
 import * as schema from './schema.jsx';
 import * as api from '../api/index.jsx';
@@ -12,6 +14,7 @@ export const addTodo = (text) => (dispatch) =>
     });
 
 //thunk middleware
+//Thunk allows you to write action creators that return a function instead of an action
 export const fetchTodos = (filter) => (dispatch, getState) => {
     if (getIsFetching(getState(), filter)) {
         return;
